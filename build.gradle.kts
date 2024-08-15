@@ -2,6 +2,7 @@ plugins {
 	java
 	id("org.springframework.boot") version "3.3.2"
 	id("io.spring.dependency-management") version "1.1.6"
+	id("com.google.devtools.ksp") version "1.7.10-1.0.6"
 }
 
 group = "com.pragma"
@@ -10,6 +11,9 @@ version = "0.0.1-SNAPSHOT"
 java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(17)
+	}
+	sourceSets.main {
+		java.srcDir("build/generated/ksp/main/kotlin")
 	}
 }
 
@@ -38,6 +42,7 @@ dependencies {
 
 	//ORM
 	implementation("org.babyfish.jimmer:jimmer-spring-boot-starter:${jimmerVersion}")
+	ksp("org.babyfish.jimmer:jimmer-ksp:${jimmerVersion}")
 }
 
 tasks.withType<Test> {
