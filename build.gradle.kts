@@ -23,8 +23,10 @@ repositories {
 	mavenCentral()
 }
 
+// Dependencies Values
+val jimmerVersion = "0.8.150"
+
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	compileOnly("org.projectlombok:lombok")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
@@ -32,6 +34,10 @@ dependencies {
 	annotationProcessor("org.projectlombok:lombok")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+	//ORM
+	implementation("org.babyfish.jimmer:jimmer-spring-boot-starter:${jimmerVersion}")
+	annotationProcessor("org.babyfish.jimmer:jimmer-apt:${jimmerVersion}")
 }
 
 tasks.withType<Test> {
