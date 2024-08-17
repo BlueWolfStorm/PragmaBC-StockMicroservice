@@ -18,9 +18,10 @@ public interface CategoryEntityMapper {
     Category toCategory(CategoryEntity categoryEntity);
 
     default Page<Category> toCategoryPage(Page<CategoryEntity> categoryResponses){
-        List<Category> categoryResponseList = categoryResponses.getContent().stream()
-                .map(this::toCategory).toList();
+        return categoryResponses.map(this::toCategory);
+    }
 
-        return new PageImpl<>(categoryResponseList);
+    default Page<CategoryEntity> toCategoryEntityPage(Page<Category> categories){
+        return categories.map(this::toCategoryEntity);
     }
 }

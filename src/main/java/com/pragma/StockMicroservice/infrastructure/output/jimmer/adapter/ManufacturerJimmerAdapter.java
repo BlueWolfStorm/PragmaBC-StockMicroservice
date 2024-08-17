@@ -7,6 +7,7 @@ import com.pragma.StockMicroservice.infrastructure.output.jimmer.entity.Manufact
 import com.pragma.StockMicroservice.infrastructure.output.jimmer.mapper.ManufacturerEntityMapper;
 import com.pragma.StockMicroservice.infrastructure.output.jimmer.repository.IManufacturerRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 
 @RequiredArgsConstructor
 public class ManufacturerJimmerAdapter implements IManufacturerPersistencePort {
@@ -15,11 +16,21 @@ public class ManufacturerJimmerAdapter implements IManufacturerPersistencePort {
 
     @Override
     public void insertManufacture(Manufacturer manufacturer) {
-        if(manufacturerRepository.findByName(manufacturer.getName()).isPresent()) {
+        if (manufacturerRepository.findByName(manufacturer.getName()).isPresent()) {
             throw new ManufacturerAlreadyExistException();
         }
 
         ManufacturerEntity manufacturerEntity = manufacturerEntityMapper.toManufacturerEntity(manufacturer);
         manufacturerRepository.insert(manufacturerEntity);
+    }
+
+    @Override
+    public Page<Manufacturer> getAllManufacturesAsc(int pageIndex, int pageSize) {
+        return manufacturerEntityMapper.toManufacturerPage(manufacturerRepository.findAllOrderByNameAsc(pageIndex, pageSize));
+    }
+
+    @Override
+    public Page<Manufacturer> getAllManufacturesDesc(int pageIndex, int pageSize) {
+        return manufacturerEntityMapper.toManufacturerPage(manufacturerRepository.findAllOrderByNameDesc(pageIndex, pageSize));
     }
 }
