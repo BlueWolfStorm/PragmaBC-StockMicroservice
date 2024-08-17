@@ -11,12 +11,12 @@ import org.springframework.context.annotation.Bean;
 @EnableJimmerRepositories
 public class StockMicroserviceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(StockMicroserviceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(StockMicroserviceApplication.class, args);
+    }
 
-	@Bean
-	public DatabaseNamingStrategy databaseNamingStrategy(){
-		return DefaultDatabaseNamingStrategy.UPPER_CASE;
-	}
+    @Bean
+    public DatabaseNamingStrategy databaseNamingStrategy() {
+        return DefaultDatabaseNamingStrategy.UPPER_CASE;
+    }
 }

@@ -1,7 +1,9 @@
 plugins {
 	java
+	jacoco
 	id("org.springframework.boot") version "3.3.2"
 	id("io.spring.dependency-management") version "1.1.6"
+	id("org.springdoc.openapi-gradle-plugin") version "1.9.0"
 }
 
 group = "com.pragma"
@@ -25,6 +27,7 @@ repositories {
 
 // Dependencies Values
 val jimmerVersion = "0.8.150"
+val mapStructVersion = "1.5.2.Final"
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
@@ -38,6 +41,22 @@ dependencies {
 	//ORM
 	implementation("org.babyfish.jimmer:jimmer-spring-boot-starter:${jimmerVersion}")
 	annotationProcessor("org.babyfish.jimmer:jimmer-apt:${jimmerVersion}")
+
+	//Map Struct
+	implementation("org.mapstruct:mapstruct:${mapStructVersion}")
+	annotationProcessor("org.mapstruct:mapstruct-processor:${mapStructVersion}")
+
+	//OpenAPI
+	implementation("org.springdoc:springdoc-openapi-ui:1.6.9")
+
+}
+
+tasks.test{
+	finalizedBy(tasks.jacocoTestReport)
+}
+
+tasks.jacocoTestReport {
+	dependsOn(tasks.test)
 }
 
 tasks.withType<Test> {
