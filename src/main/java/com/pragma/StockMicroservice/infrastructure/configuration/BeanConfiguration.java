@@ -3,11 +3,13 @@ package com.pragma.StockMicroservice.infrastructure.configuration;
 import com.pragma.StockMicroservice.domain.api.ICreateCategoryServicePort;
 import com.pragma.StockMicroservice.domain.api.ICreateManufacturerServicePort;
 import com.pragma.StockMicroservice.domain.api.IGetCategoryServicePort;
+import com.pragma.StockMicroservice.domain.api.IGetManufacturerServicePort;
 import com.pragma.StockMicroservice.domain.spi.ICategoryPersistencePort;
 import com.pragma.StockMicroservice.domain.spi.IManufacturerPersistencePort;
 import com.pragma.StockMicroservice.domain.usecase.CreateCategoryUseCase;
 import com.pragma.StockMicroservice.domain.usecase.CreateManufacturerUseCase;
 import com.pragma.StockMicroservice.domain.usecase.GetCategoryUseCase;
+import com.pragma.StockMicroservice.domain.usecase.GetManufacturerUseCase;
 import com.pragma.StockMicroservice.infrastructure.output.jimmer.adapter.CategoryJimmerAdapter;
 import com.pragma.StockMicroservice.infrastructure.output.jimmer.adapter.ManufacturerJimmerAdapter;
 import com.pragma.StockMicroservice.infrastructure.output.jimmer.mapper.CategoryEntityMapper;
@@ -50,5 +52,10 @@ public class BeanConfiguration {
     @Bean
     public ICreateManufacturerServicePort createManufacturerServicePort() {
         return new CreateManufacturerUseCase(manufacturerPersistencePort());
+    }
+
+    @Bean
+    public IGetManufacturerServicePort getManufacturerServicePort() {
+        return new GetManufacturerUseCase(manufacturerPersistencePort());
     }
 }
