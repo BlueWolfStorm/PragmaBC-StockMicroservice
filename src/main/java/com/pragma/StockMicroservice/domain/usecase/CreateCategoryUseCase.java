@@ -12,7 +12,6 @@ public class CreateCategoryUseCase implements ICreateCategoryServicePort {
     private final int MAX_NAME_LENGTH = 50;
     private final int MAX_DESCRIPTION_LENGTH = 90;
 
-
     public CreateCategoryUseCase(ICategoryPersistencePort categoryPersistencePort) {
         this.categoryPersistencePort = categoryPersistencePort;
     }
