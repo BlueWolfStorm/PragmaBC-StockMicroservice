@@ -1,8 +1,10 @@
 package com.pragma.StockMicroservice.infrastructure.configuration;
 
 import com.pragma.StockMicroservice.domain.api.ICreateCategoryServicePort;
+import com.pragma.StockMicroservice.domain.api.IGetCategoryServicePort;
 import com.pragma.StockMicroservice.domain.spi.ICategoryPersistencePort;
 import com.pragma.StockMicroservice.domain.usecase.CreateCategoryUseCase;
+import com.pragma.StockMicroservice.domain.usecase.GetCategoryUseCase;
 import com.pragma.StockMicroservice.infrastructure.output.jimmer.adapter.CategoryJimmerAdapter;
 import com.pragma.StockMicroservice.infrastructure.output.jimmer.mapper.CategoryEntityMapper;
 import com.pragma.StockMicroservice.infrastructure.output.jimmer.repository.ICategoryRepository;
@@ -24,5 +26,10 @@ public class BeanConfiguration {
     @Bean
     public ICreateCategoryServicePort createCategoryServicePort() {
         return new CreateCategoryUseCase(categoryPersistencePort());
+    }
+
+    @Bean
+    public IGetCategoryServicePort getCategoryServicePort() {
+        return new GetCategoryUseCase(categoryPersistencePort());
     }
 }

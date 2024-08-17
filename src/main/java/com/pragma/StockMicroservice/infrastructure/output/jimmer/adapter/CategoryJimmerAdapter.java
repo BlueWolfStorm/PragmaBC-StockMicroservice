@@ -6,6 +6,7 @@ import com.pragma.StockMicroservice.infrastructure.exception.CategoryAlreadyExis
 import com.pragma.StockMicroservice.infrastructure.output.jimmer.mapper.CategoryEntityMapper;
 import com.pragma.StockMicroservice.infrastructure.output.jimmer.repository.ICategoryRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 
 @RequiredArgsConstructor
 public class CategoryJimmerAdapter implements ICategoryPersistencePort {
@@ -20,5 +21,15 @@ public class CategoryJimmerAdapter implements ICategoryPersistencePort {
         }
 
         return categoryEntityMapper.toCategory(categoryRepository.insert(categoryEntityMapper.toCategoryEntity(category)));
+    }
+
+    @Override
+    public Page<Category> getAllCategoriesAsc(int page, int size) {
+        return categoryEntityMapper.toCategoryPage(categoryRepository.findAllOrderByNameDesc(page, size));
+    }
+
+    @Override
+    public Page<Category> getAllCategoriesDesc(int page, int size) {
+        return categoryEntityMapper.toCategoryPage(categoryRepository.findAllOrderByName(page, size));
     }
 }

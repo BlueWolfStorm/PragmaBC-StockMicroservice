@@ -4,6 +4,8 @@ import com.pragma.StockMicroservice.domain.model.Category;
 import com.pragma.StockMicroservice.infrastructure.output.jimmer.entity.CategoryEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 
 import java.util.List;
 
@@ -15,7 +17,10 @@ public interface CategoryEntityMapper {
 
     Category toCategory(CategoryEntity categoryEntity);
 
-    List<CategoryEntity> toCategoryEntityList(List<Category> categories);
+    default Page<Category> toCategoryPage(Page<CategoryEntity> categoryResponses){
+        List<Category> categoryResponseList = categoryResponses.getContent().stream()
+                .map(this::toCategory).toList();
 
-    List<Category> toCategoryList(List<CategoryEntity> categoryEntities);
+        return new PageImpl<>(categoryResponseList);
+    }
 }
