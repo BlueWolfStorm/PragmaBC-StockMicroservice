@@ -17,6 +17,6 @@ public class StockMicroserviceApplication {
 
 	@Bean
 	public DatabaseNamingStrategy databaseNamingStrategy(){
-		return DefaultDatabaseNamingStrategy.LOWER_CASE;
+		return DefaultDatabaseNamingStrategy.UPPER_CASE;
 	}
 }
