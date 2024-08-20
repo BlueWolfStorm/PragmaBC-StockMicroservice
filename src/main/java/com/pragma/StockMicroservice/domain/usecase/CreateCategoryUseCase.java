@@ -9,8 +9,8 @@ import com.pragma.StockMicroservice.domain.usecase.exception.NoCategoryNameBlank
 
 public class CreateCategoryUseCase implements ICreateCategoryServicePort {
     private final ICategoryPersistencePort categoryPersistencePort;
-    private final int MAX_NAME_LENGTH = 50;
-    private final int MAX_DESCRIPTION_LENGTH = 90;
+    private static final int MAX_NAME_LENGTH = 50;
+    private static final int MAX_DESCRIPTION_LENGTH = 90;
 
     public CreateCategoryUseCase(ICategoryPersistencePort categoryPersistencePort) {
         this.categoryPersistencePort = categoryPersistencePort;
