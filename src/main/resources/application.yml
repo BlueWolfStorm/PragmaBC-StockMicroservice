@@ -4,17 +4,15 @@ server:
       include-stacktrace: never
 
 spring:
-    application:
+  application:
         name: StockMicroservice
-    datasource:
-      url: jdbc:mysql://127.0.0.1:3333/pragma-stock
-      username: root
-      password: pragma
-
-jimmer:
-    dialect: org.babyfish.jimmer.sql.dialect.MySqlDialect
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3333/pragma-stock
+    username: root
+    password: pragma
+  jpa:
     show-sql: true
-    pretty-sql: true
-    database-validation-mode: error
+    hibernate:
+      ddl-auto: update
 
 

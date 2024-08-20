@@ -4,6 +4,9 @@ import com.pragma.StockMicroservice.domain.api.IGetManufacturerServicePort;
 import com.pragma.StockMicroservice.domain.model.Manufacturer;
 import com.pragma.StockMicroservice.domain.spi.IManufacturerPersistencePort;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 public class GetManufacturerUseCase implements IGetManufacturerServicePort {
     IManufacturerPersistencePort manufacturerPersistencePort;
@@ -14,10 +17,12 @@ public class GetManufacturerUseCase implements IGetManufacturerServicePort {
 
     @Override
     public Page<Manufacturer> getAllCategories(int page, int size, boolean sortDesc) {
-        if(sortDesc) {
-            return manufacturerPersistencePort.getAllManufacturesDesc(page, size);
-        }
+        Pageable pageable;
+        if(sortDesc)
+            pageable = PageRequest.of(page, size, Sort.by("name").descending());
+        else
+            pageable = PageRequest.of(page, size, Sort.by("name").ascending());
 
-        return manufacturerPersistencePort.getAllManufacturesAsc(page, size);
+        return manufacturerPersistencePort.getAllManufactures(pageable);
     }
 }

@@ -26,8 +26,9 @@ repositories {
 }
 
 // Dependencies Values
-val jimmerVersion = "0.8.150"
-val mapStructVersion = "1.5.2.Final"
+val jimmerVersion = "0.8.157"
+val mapStructVersion = "1.5.5.Final"
+val openApiVersion = "1.6.9"
 
 dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-web")
@@ -39,15 +40,14 @@ dependencies {
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
 	//ORM
-	implementation("org.babyfish.jimmer:jimmer-spring-boot-starter:${jimmerVersion}")
-	annotationProcessor("org.babyfish.jimmer:jimmer-apt:${jimmerVersion}")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
 	//Map Struct
 	implementation("org.mapstruct:mapstruct:${mapStructVersion}")
 	annotationProcessor("org.mapstruct:mapstruct-processor:${mapStructVersion}")
 
 	//OpenAPI
-	implementation("org.springdoc:springdoc-openapi-ui:1.6.9")
+	implementation("org.springdoc:springdoc-openapi-ui:${openApiVersion}")
 
 }
 
