@@ -4,7 +4,6 @@ import com.pragma.StockMicroservice.application.dto.ArticleResponse;
 import com.pragma.StockMicroservice.domain.model.Article;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
-import org.springframework.data.domain.Page;
 
 @Mapper(
         componentModel = "spring",

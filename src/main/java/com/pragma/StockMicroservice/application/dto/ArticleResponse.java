@@ -1,7 +1,5 @@
 package com.pragma.StockMicroservice.application.dto;
 
-import com.pragma.StockMicroservice.domain.model.Category;
-import com.pragma.StockMicroservice.domain.model.Manufacturer;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

@@ -4,6 +4,9 @@ import com.pragma.StockMicroservice.domain.api.IGetCategoryServicePort;
 import com.pragma.StockMicroservice.domain.model.Category;
 import com.pragma.StockMicroservice.domain.spi.ICategoryPersistencePort;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 public class GetCategoryUseCase implements IGetCategoryServicePort {
     ICategoryPersistencePort categoryPersistencePort;
@@ -14,10 +17,12 @@ public class GetCategoryUseCase implements IGetCategoryServicePort {
 
     @Override
     public Page<Category> getAllCategories(int page, int size, boolean sortDesc) {
-        if(sortDesc) {
-            return categoryPersistencePort.getAllCategoriesDesc(page, size);
-        }
+        Pageable pageable;
+        if(sortDesc)
+            pageable = PageRequest.of(page, size, Sort.by("name").descending());
+        else
+            pageable = PageRequest.of(page, size, Sort.by("name").ascending());
 
-        return categoryPersistencePort.getAllCategoriesAsc(page, size);
+        return categoryPersistencePort.getAllCategories(pageable);
     }
 }

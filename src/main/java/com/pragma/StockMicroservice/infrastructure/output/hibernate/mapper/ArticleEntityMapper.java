@@ -1,7 +1,7 @@
-package com.pragma.StockMicroservice.infrastructure.output.jimmer.mapper;
+package com.pragma.StockMicroservice.infrastructure.output.hibernate.mapper;
 
 import com.pragma.StockMicroservice.domain.model.Article;
-import com.pragma.StockMicroservice.infrastructure.output.jimmer.entity.ArticleEntity;
+import com.pragma.StockMicroservice.infrastructure.output.hibernate.entity.ArticleEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;

@@ -1,12 +1,13 @@
-package com.pragma.StockMicroservice.infrastructure.output.jimmer.adapter;
+package com.pragma.StockMicroservice.infrastructure.output.hibernate.adapter;
 
 import com.pragma.StockMicroservice.domain.model.Category;
 import com.pragma.StockMicroservice.domain.spi.ICategoryPersistencePort;
 import com.pragma.StockMicroservice.infrastructure.exception.CategoryAlreadyExistException;
-import com.pragma.StockMicroservice.infrastructure.output.jimmer.mapper.CategoryEntityMapper;
-import com.pragma.StockMicroservice.infrastructure.output.jimmer.repository.ICategoryRepository;
+import com.pragma.StockMicroservice.infrastructure.output.hibernate.mapper.CategoryEntityMapper;
+import com.pragma.StockMicroservice.infrastructure.output.hibernate.repository.ICategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 @RequiredArgsConstructor
 public class CategoryJimmerAdapter implements ICategoryPersistencePort {
@@ -20,16 +21,11 @@ public class CategoryJimmerAdapter implements ICategoryPersistencePort {
             throw new CategoryAlreadyExistException();
         }
 
-        categoryEntityMapper.toCategory(categoryRepository.insert(categoryEntityMapper.toCategoryEntity(category)));
+        categoryEntityMapper.toCategory(categoryRepository.save(categoryEntityMapper.toCategoryEntity(category)));
     }
 
     @Override
-    public Page<Category> getAllCategoriesAsc(int page, int size) {
-        return categoryEntityMapper.toCategoryPage(categoryRepository.findAllOrderByNameDesc(page, size));
-    }
-
-    @Override
-    public Page<Category> getAllCategoriesDesc(int page, int size) {
-        return categoryEntityMapper.toCategoryPage(categoryRepository.findAllOrderByName(page, size));
+    public Page<Category> getAllCategories(Pageable pageable) {
+        return categoryEntityMapper.toCategoryPage(categoryRepository.findAll(pageable));
     }
 }

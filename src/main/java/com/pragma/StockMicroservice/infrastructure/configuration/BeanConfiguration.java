@@ -5,15 +5,15 @@ import com.pragma.StockMicroservice.domain.spi.IArticlePersistencePort;
 import com.pragma.StockMicroservice.domain.spi.ICategoryPersistencePort;
 import com.pragma.StockMicroservice.domain.spi.IManufacturerPersistencePort;
 import com.pragma.StockMicroservice.domain.usecase.*;
-import com.pragma.StockMicroservice.infrastructure.output.jimmer.adapter.ArticleJimmerAdapter;
-import com.pragma.StockMicroservice.infrastructure.output.jimmer.adapter.CategoryJimmerAdapter;
-import com.pragma.StockMicroservice.infrastructure.output.jimmer.adapter.ManufacturerJimmerAdapter;
-import com.pragma.StockMicroservice.infrastructure.output.jimmer.mapper.ArticleEntityMapper;
-import com.pragma.StockMicroservice.infrastructure.output.jimmer.mapper.CategoryEntityMapper;
-import com.pragma.StockMicroservice.infrastructure.output.jimmer.mapper.ManufacturerEntityMapper;
-import com.pragma.StockMicroservice.infrastructure.output.jimmer.repository.IArticleRepository;
-import com.pragma.StockMicroservice.infrastructure.output.jimmer.repository.ICategoryRepository;
-import com.pragma.StockMicroservice.infrastructure.output.jimmer.repository.IManufacturerRepository;
+import com.pragma.StockMicroservice.infrastructure.output.hibernate.adapter.ArticleJimmerAdapter;
+import com.pragma.StockMicroservice.infrastructure.output.hibernate.adapter.CategoryJimmerAdapter;
+import com.pragma.StockMicroservice.infrastructure.output.hibernate.adapter.ManufacturerJimmerAdapter;
+import com.pragma.StockMicroservice.infrastructure.output.hibernate.mapper.ArticleEntityMapper;
+import com.pragma.StockMicroservice.infrastructure.output.hibernate.mapper.CategoryEntityMapper;
+import com.pragma.StockMicroservice.infrastructure.output.hibernate.mapper.ManufacturerEntityMapper;
+import com.pragma.StockMicroservice.infrastructure.output.hibernate.repository.IArticleRepository;
+import com.pragma.StockMicroservice.infrastructure.output.hibernate.repository.ICategoryRepository;
+import com.pragma.StockMicroservice.infrastructure.output.hibernate.repository.IManufacturerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -62,7 +62,7 @@ public class BeanConfiguration {
 
     @Bean
     public IArticlePersistencePort articlePersistencePort() {
-        return new ArticleJimmerAdapter(articleRepository, manufacturerRepository, categoryRepository, articleEntityMapper, manufacturerEntityMapper, categoryEntityMapper);
+        return new ArticleJimmerAdapter(articleRepository, articleEntityMapper, categoryRepository, manufacturerRepository);
     }
 
     @Bean

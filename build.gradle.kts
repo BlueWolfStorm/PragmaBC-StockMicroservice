@@ -40,8 +40,7 @@ dependencies {
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 
 	//ORM
-	implementation("org.babyfish.jimmer:jimmer-spring-boot-starter:${jimmerVersion}")
-	annotationProcessor("org.babyfish.jimmer:jimmer-apt:${jimmerVersion}")
+	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
 	//Map Struct
 	implementation("org.mapstruct:mapstruct:${mapStructVersion}")
