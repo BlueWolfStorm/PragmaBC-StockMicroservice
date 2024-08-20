@@ -1,19 +1,17 @@
 package com.pragma.StockMicroservice.infrastructure.configuration;
 
-import com.pragma.StockMicroservice.domain.api.ICreateCategoryServicePort;
-import com.pragma.StockMicroservice.domain.api.ICreateManufacturerServicePort;
-import com.pragma.StockMicroservice.domain.api.IGetCategoryServicePort;
-import com.pragma.StockMicroservice.domain.api.IGetManufacturerServicePort;
+import com.pragma.StockMicroservice.domain.api.*;
+import com.pragma.StockMicroservice.domain.spi.IArticlePersistencePort;
 import com.pragma.StockMicroservice.domain.spi.ICategoryPersistencePort;
 import com.pragma.StockMicroservice.domain.spi.IManufacturerPersistencePort;
-import com.pragma.StockMicroservice.domain.usecase.CreateCategoryUseCase;
-import com.pragma.StockMicroservice.domain.usecase.CreateManufacturerUseCase;
-import com.pragma.StockMicroservice.domain.usecase.GetCategoryUseCase;
-import com.pragma.StockMicroservice.domain.usecase.GetManufacturerUseCase;
+import com.pragma.StockMicroservice.domain.usecase.*;
+import com.pragma.StockMicroservice.infrastructure.output.jimmer.adapter.ArticleJimmerAdapter;
 import com.pragma.StockMicroservice.infrastructure.output.jimmer.adapter.CategoryJimmerAdapter;
 import com.pragma.StockMicroservice.infrastructure.output.jimmer.adapter.ManufacturerJimmerAdapter;
+import com.pragma.StockMicroservice.infrastructure.output.jimmer.mapper.ArticleEntityMapper;
 import com.pragma.StockMicroservice.infrastructure.output.jimmer.mapper.CategoryEntityMapper;
 import com.pragma.StockMicroservice.infrastructure.output.jimmer.mapper.ManufacturerEntityMapper;
+import com.pragma.StockMicroservice.infrastructure.output.jimmer.repository.IArticleRepository;
 import com.pragma.StockMicroservice.infrastructure.output.jimmer.repository.ICategoryRepository;
 import com.pragma.StockMicroservice.infrastructure.output.jimmer.repository.IManufacturerRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +26,9 @@ public class BeanConfiguration {
 
     private final IManufacturerRepository manufacturerRepository;
     private final ManufacturerEntityMapper manufacturerEntityMapper;
+
+    private final IArticleRepository articleRepository;
+    private final ArticleEntityMapper articleEntityMapper;
 
     @Bean
     public ICategoryPersistencePort categoryPersistencePort() {
@@ -57,5 +58,15 @@ public class BeanConfiguration {
     @Bean
     public IGetManufacturerServicePort getManufacturerServicePort() {
         return new GetManufacturerUseCase(manufacturerPersistencePort());
+    }
+
+    @Bean
+    public IArticlePersistencePort articlePersistencePort() {
+        return new ArticleJimmerAdapter(articleRepository, manufacturerRepository, categoryRepository, articleEntityMapper, manufacturerEntityMapper, categoryEntityMapper);
+    }
+
+    @Bean
+    ICreateArticleServicePort createArticleServicePort() {
+        return new CreateArticleUseCase(articlePersistencePort());
     }
 }
