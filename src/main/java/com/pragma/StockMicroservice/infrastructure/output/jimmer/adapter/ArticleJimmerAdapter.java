@@ -3,7 +3,6 @@ package com.pragma.StockMicroservice.infrastructure.output.jimmer.adapter;
 import com.pragma.StockMicroservice.domain.model.Article;
 import com.pragma.StockMicroservice.domain.model.Category;
 import com.pragma.StockMicroservice.domain.spi.IArticlePersistencePort;
-import com.pragma.StockMicroservice.domain.usecase.exception.NoCategoriesRepeated;
 import com.pragma.StockMicroservice.infrastructure.exception.NoCategoryFoundException;
 import com.pragma.StockMicroservice.infrastructure.exception.NoManufacturerFoundException;
 import com.pragma.StockMicroservice.infrastructure.output.jimmer.entity.ArticleEntity;
