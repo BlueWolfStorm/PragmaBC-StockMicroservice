@@ -18,7 +18,7 @@ public class GetCategoryUseCase implements IGetCategoryServicePort {
     @Override
     public Page<Category> getAllCategories(int page, int size, boolean sortDesc) {
         Pageable pageable;
-        if(sortDesc)
+        if (sortDesc)
             pageable = PageRequest.of(page, size, Sort.by("name").descending());
         else
             pageable = PageRequest.of(page, size, Sort.by("name").ascending());

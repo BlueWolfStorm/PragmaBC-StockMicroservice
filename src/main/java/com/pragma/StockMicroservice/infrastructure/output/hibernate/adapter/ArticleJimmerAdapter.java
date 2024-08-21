@@ -12,6 +12,8 @@ import com.pragma.StockMicroservice.infrastructure.output.hibernate.repository.I
 import com.pragma.StockMicroservice.infrastructure.output.hibernate.repository.ICategoryRepository;
 import com.pragma.StockMicroservice.infrastructure.output.hibernate.repository.IManufacturerRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,22 +31,33 @@ public class ArticleJimmerAdapter implements IArticlePersistencePort {
     public void insertArticle(Article article) {
         ArticleEntity articleEntity = articleEntityMapper.toArticleEntityWithoutId(article);
 
-        Optional<ManufacturerEntity> manufacturer = manufacturerRepository.findByName(article.getManufacturer().getName());
-        if(manufacturer.isPresent())
-            articleEntity.setManufacturer(manufacturer.get());
-        else
-            throw new NoManufacturerFoundException(articleEntity.getManufacturer().getName());
+        Optional<ManufacturerEntity> manufacturer = manufacturerRepository.findByName(article
+                                                                                              .getManufacturer()
+                                                                                              .getName());
+        if (manufacturer.isPresent()) articleEntity.setManufacturer(manufacturer.get());
+        else throw new NoManufacturerFoundException(articleEntity
+                                                            .getManufacturer()
+                                                            .getName());
 
         List<CategoryEntity> categories = new ArrayList<>();
-        for(CategoryEntity category : articleEntity.getCategories()) {
+        for (CategoryEntity category : articleEntity.getCategories()) {
             Optional<CategoryEntity> categoryEntity = categoryRepository.findByName(category.getName());
-            if(categoryEntity.isPresent())
-                categories.add(categoryEntity.get());
-            else
-                throw new NoCategoryFoundException(category.getName());
+            if (categoryEntity.isPresent()) categories.add(categoryEntity.get());
+            else throw new NoCategoryFoundException(category.getName());
         }
 
         articleEntity.setCategories(categories);
         articleRepository.save(articleEntity);
+    }
+
+    @Override
+    public Page<Article> getArticles(Pageable pageable,
+                                     String articleName,
+                                     String articleManufacturer,
+                                     String articleCategory
+    ) {
+        return articleRepository
+                .findByANameMNameCName(pageable, articleName, articleManufacturer, articleCategory)
+                .map(articleEntityMapper::toArticle);
     }
 }

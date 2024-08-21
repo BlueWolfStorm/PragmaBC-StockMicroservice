@@ -12,13 +12,14 @@ import org.springframework.data.domain.Page;
         unmappedSourcePolicy = ReportingPolicy.IGNORE)
 public interface CategoryEntityMapper {
     CategoryEntity toCategoryEntity(Category category);
+
     Category toCategory(CategoryEntity categoryEntity);
 
-    default Page<Category> toCategoryPage(Page<CategoryEntity> categoryResponses){
+    default Page<Category> toCategoryPage(Page<CategoryEntity> categoryResponses) {
         return categoryResponses.map(this::toCategory);
     }
 
-    default Page<CategoryEntity> toCategoryEntityPage(Page<Category> categories){
+    default Page<CategoryEntity> toCategoryEntityPage(Page<Category> categories) {
         return categories.map(this::toCategoryEntity);
     }
 }

@@ -1,4 +1,4 @@
-package com.pragma.StockMicroservice.application.dto;
+package com.pragma.StockMicroservice.application.dto.manufacturer;
 
 import lombok.Getter;
 import lombok.Setter;

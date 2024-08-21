@@ -4,6 +4,7 @@ plugins {
 	id("org.springframework.boot") version "3.3.2"
 	id("io.spring.dependency-management") version "1.1.6"
 	id("org.springdoc.openapi-gradle-plugin") version "1.9.0"
+	id("com.diffplug.spotless") version "7.0.0.BETA1"
 }
 
 group = "com.pragma"

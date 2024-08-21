@@ -8,9 +8,9 @@ import com.pragma.StockMicroservice.domain.usecase.exception.NoManufacturerDescr
 import com.pragma.StockMicroservice.domain.usecase.exception.NoManufacturerNameBlankFieldException;
 
 public class CreateManufacturerUseCase implements ICreateManufacturerServicePort {
-    private final IManufacturerPersistencePort manufacturerPersistencePort;
     private static final int MAXIMUM_NAME_LIMIT = 50;
     private static final int MAXIMUM_DESCRIPTION_LIMIT = 120;
+    private final IManufacturerPersistencePort manufacturerPersistencePort;
 
     public CreateManufacturerUseCase(IManufacturerPersistencePort manufacturerPersistencePort) {
         this.manufacturerPersistencePort = manufacturerPersistencePort;

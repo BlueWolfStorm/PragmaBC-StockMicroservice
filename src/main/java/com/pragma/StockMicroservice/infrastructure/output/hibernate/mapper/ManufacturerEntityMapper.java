@@ -11,13 +11,14 @@ import org.springframework.data.domain.Page;
         unmappedSourcePolicy = ReportingPolicy.IGNORE)
 public interface ManufacturerEntityMapper {
     ManufacturerEntity toManufacturerEntity(Manufacturer manufacturer);
+
     Manufacturer toManufacturer(ManufacturerEntity manufacturerEntity);
 
-    default Page<Manufacturer> toManufacturerPage(Page<ManufacturerEntity> manufacturerEntities){
+    default Page<Manufacturer> toManufacturerPage(Page<ManufacturerEntity> manufacturerEntities) {
         return manufacturerEntities.map(this::toManufacturer);
     }
 
-    default Page<ManufacturerEntity> toManufacturerEntityPage(Page<Manufacturer> manufacturers){
+    default Page<ManufacturerEntity> toManufacturerEntityPage(Page<Manufacturer> manufacturers) {
         return manufacturers.map(this::toManufacturerEntity);
     }
 }

@@ -69,4 +69,9 @@ public class BeanConfiguration {
     ICreateArticleServicePort createArticleServicePort() {
         return new CreateArticleUseCase(articlePersistencePort());
     }
+
+    @Bean
+    IGetArticleServicePort getArticleServicePort() {
+        return new GetArticleUseCase(articlePersistencePort());
+    }
 }

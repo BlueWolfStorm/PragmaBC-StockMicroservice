@@ -1,7 +1,7 @@
 package com.pragma.StockMicroservice.application.handler;
 
-import com.pragma.StockMicroservice.application.dto.ManufacturerRequest;
-import com.pragma.StockMicroservice.application.dto.ManufacturerResponse;
+import com.pragma.StockMicroservice.application.dto.manufacturer.ManufacturerRequest;
+import com.pragma.StockMicroservice.application.dto.manufacturer.ManufacturerResponse;
 import com.pragma.StockMicroservice.application.mapper.ManufacturerRequestMapper;
 import com.pragma.StockMicroservice.application.mapper.ManufacturerResponseMapper;
 import com.pragma.StockMicroservice.domain.api.ICreateManufacturerServicePort;
@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class ManufacturerHandler implements IManufacturerHandler{
+public class ManufacturerHandler implements IManufacturerHandler {
     private final ICreateManufacturerServicePort createManufacturerServicePort;
     private final IGetManufacturerServicePort getManufacturerServicePort;
     private final ManufacturerRequestMapper manufacturerRequestMapper;

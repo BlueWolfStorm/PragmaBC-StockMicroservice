@@ -6,5 +6,6 @@ import org.springframework.data.domain.Pageable;
 
 public interface IManufacturerPersistencePort {
     void insertManufacture(Manufacturer manufacturer);
+
     Page<Manufacturer> getAllManufactures(Pageable pageable);
 }

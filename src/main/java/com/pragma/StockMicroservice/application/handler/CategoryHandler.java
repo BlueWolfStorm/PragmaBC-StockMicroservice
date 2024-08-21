@@ -1,7 +1,7 @@
 package com.pragma.StockMicroservice.application.handler;
 
-import com.pragma.StockMicroservice.application.dto.CategoryRequest;
-import com.pragma.StockMicroservice.application.dto.CategoryResponse;
+import com.pragma.StockMicroservice.application.dto.category.CategoryRequest;
+import com.pragma.StockMicroservice.application.dto.category.CategoryResponse;
 import com.pragma.StockMicroservice.application.mapper.CategoryRequestMapper;
 import com.pragma.StockMicroservice.application.mapper.CategoryResponseMapper;
 import com.pragma.StockMicroservice.domain.api.ICreateCategoryServicePort;
