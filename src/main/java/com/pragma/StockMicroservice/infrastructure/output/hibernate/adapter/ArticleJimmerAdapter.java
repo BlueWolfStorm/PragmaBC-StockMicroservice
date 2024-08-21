@@ -32,12 +32,12 @@ public class ArticleJimmerAdapter implements IArticlePersistencePort {
         ArticleEntity articleEntity = articleEntityMapper.toArticleEntityWithoutId(article);
 
         Optional<ManufacturerEntity> manufacturer = manufacturerRepository.findByName(article
-                                                                                              .getManufacturer()
-                                                                                              .getName());
+                .getManufacturer()
+                .getName());
         if (manufacturer.isPresent()) articleEntity.setManufacturer(manufacturer.get());
         else throw new NoManufacturerFoundException(articleEntity
-                                                            .getManufacturer()
-                                                            .getName());
+                .getManufacturer()
+                .getName());
 
         List<CategoryEntity> categories = new ArrayList<>();
         for (CategoryEntity category : articleEntity.getCategories()) {
@@ -54,8 +54,7 @@ public class ArticleJimmerAdapter implements IArticlePersistencePort {
     public Page<Article> getArticles(Pageable pageable,
                                      String articleName,
                                      String articleManufacturer,
-                                     String articleCategory
-    ) {
+                                     String articleCategory) {
         return articleRepository
                 .findByANameMNameCName(pageable, articleName, articleManufacturer, articleCategory)
                 .map(articleEntityMapper::toArticle);

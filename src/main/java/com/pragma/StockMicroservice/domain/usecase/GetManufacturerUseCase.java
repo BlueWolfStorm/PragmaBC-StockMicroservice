@@ -16,12 +16,16 @@ public class GetManufacturerUseCase implements IGetManufacturerServicePort {
     }
 
     @Override
-    public Page<Manufacturer> getAllCategories(int page, int size, boolean sortDesc) {
+    public Page<Manufacturer> getAllCategories(int page,
+                                               int size,
+                                               boolean sortDesc) {
         Pageable pageable;
-        if (sortDesc)
-            pageable = PageRequest.of(page, size, Sort.by("name").descending());
-        else
-            pageable = PageRequest.of(page, size, Sort.by("name").ascending());
+        if (sortDesc) pageable = PageRequest.of(page, size, Sort
+                .by("name")
+                .descending());
+        else pageable = PageRequest.of(page, size, Sort
+                .by("name")
+                .ascending());
 
         return manufacturerPersistencePort.getAllManufactures(pageable);
     }

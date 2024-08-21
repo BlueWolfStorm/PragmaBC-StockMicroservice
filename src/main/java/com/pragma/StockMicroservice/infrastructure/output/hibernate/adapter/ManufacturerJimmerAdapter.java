@@ -17,7 +17,9 @@ public class ManufacturerJimmerAdapter implements IManufacturerPersistencePort {
 
     @Override
     public void insertManufacture(Manufacturer manufacturer) {
-        if (manufacturerRepository.findByName(manufacturer.getName()).isPresent()) {
+        if (manufacturerRepository
+                .findByName(manufacturer.getName())
+                .isPresent()) {
             throw new ManufacturerAlreadyExistException();
         }
 

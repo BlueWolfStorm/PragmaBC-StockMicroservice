@@ -1,4 +1,4 @@
-package com.pragma.StockMicroservice.application.mapper;
+package com.pragma.StockMicroservice.application.mapper.category;
 
 import com.pragma.StockMicroservice.application.dto.category.CategoryResponse;
 import com.pragma.StockMicroservice.domain.model.Category;
@@ -6,11 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.data.domain.Page;
 
-@Mapper(
-        componentModel = "spring",
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        unmappedSourcePolicy = ReportingPolicy.IGNORE
-)
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE, unmappedSourcePolicy = ReportingPolicy.IGNORE)
 public interface CategoryResponseMapper {
     CategoryResponse toCategoryResponse(Category category);
 

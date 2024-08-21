@@ -7,5 +7,8 @@ import org.springframework.data.domain.Pageable;
 public interface IArticlePersistencePort {
     void insertArticle(Article article);
 
-    Page<Article> getArticles(Pageable pageable, String articleName, String articleManufacturer, String articleCategory);
+    Page<Article> getArticles(Pageable pageable,
+                              String articleName,
+                              String articleManufacturer,
+                              String articleCategory);
 }

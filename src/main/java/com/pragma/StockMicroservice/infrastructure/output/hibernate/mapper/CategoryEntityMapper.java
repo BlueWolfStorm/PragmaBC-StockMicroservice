@@ -7,9 +7,7 @@ import org.mapstruct.ReportingPolicy;
 import org.springframework.data.domain.Page;
 
 
-@Mapper(componentModel = "spring",
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        unmappedSourcePolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE, unmappedSourcePolicy = ReportingPolicy.IGNORE)
 public interface CategoryEntityMapper {
     CategoryEntity toCategoryEntity(Category category);
 

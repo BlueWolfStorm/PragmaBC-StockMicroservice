@@ -12,10 +12,7 @@ import java.util.Optional;
 public interface IArticleRepository extends JpaRepository<ArticleEntity, Long> {
     Optional<ArticleEntity> findByName(String name);
 
-    @Query("SELECT a FROM ARTICLE a JOIN a.categories c WHERE" +
-            "(a.name LIKE %:article_name%) AND" +
-            "(a.manufacturer.name LIKE %:article_manufacturer%) AND" +
-            "(c.name LIKE %:article_category%)")
+    @Query("SELECT a FROM ARTICLE a JOIN a.categories c WHERE" + "(a.name LIKE %:article_name%) AND" + "(a.manufacturer.name LIKE %:article_manufacturer%) AND" + "(c.name LIKE %:article_category%)")
     Page<ArticleEntity> findByANameMNameCName(Pageable pageable,
                                               @Param("article_name") String articleName,
                                               @Param("article_manufacturer") String articleManufacturer,

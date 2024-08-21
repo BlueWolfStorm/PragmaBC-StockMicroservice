@@ -18,14 +18,18 @@ public class CreateCategoryUseCase implements ICreateCategoryServicePort {
 
     @Override
     public void createCategory(Category category) {
-        if (category.getName().isBlank())
-            throw new NoCategoryNameBlankFieldException();
-        else if (category.getDescription().isBlank())
-            throw new NoCategoryDescriptionBlankFieldException();
-        else if (category.getName().length() > MAX_NAME_LENGTH)
-            throw new MaximumLimitExceededException(MAX_NAME_LENGTH);
-        else if (category.getDescription().length() > MAX_DESCRIPTION_LENGTH)
-            throw new MaximumLimitExceededException(MAX_DESCRIPTION_LENGTH);
+        if (category
+                .getName()
+                .isBlank()) throw new NoCategoryNameBlankFieldException();
+        else if (category
+                .getDescription()
+                .isBlank()) throw new NoCategoryDescriptionBlankFieldException();
+        else if (category
+                .getName()
+                .length() > MAX_NAME_LENGTH) throw new MaximumLimitExceededException(MAX_NAME_LENGTH);
+        else if (category
+                .getDescription()
+                .length() > MAX_DESCRIPTION_LENGTH) throw new MaximumLimitExceededException(MAX_DESCRIPTION_LENGTH);
 
         categoryPersistencePort.insert(category);
     }

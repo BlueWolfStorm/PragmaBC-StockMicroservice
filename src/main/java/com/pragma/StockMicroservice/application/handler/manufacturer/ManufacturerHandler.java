@@ -1,9 +1,9 @@
-package com.pragma.StockMicroservice.application.handler;
+package com.pragma.StockMicroservice.application.handler.manufacturer;
 
 import com.pragma.StockMicroservice.application.dto.manufacturer.ManufacturerRequest;
 import com.pragma.StockMicroservice.application.dto.manufacturer.ManufacturerResponse;
-import com.pragma.StockMicroservice.application.mapper.ManufacturerRequestMapper;
-import com.pragma.StockMicroservice.application.mapper.ManufacturerResponseMapper;
+import com.pragma.StockMicroservice.application.mapper.manufacturer.ManufacturerRequestMapper;
+import com.pragma.StockMicroservice.application.mapper.manufacturer.ManufacturerResponseMapper;
 import com.pragma.StockMicroservice.domain.api.ICreateManufacturerServicePort;
 import com.pragma.StockMicroservice.domain.api.IGetManufacturerServicePort;
 import com.pragma.StockMicroservice.domain.model.Manufacturer;
@@ -28,7 +28,9 @@ public class ManufacturerHandler implements IManufacturerHandler {
     }
 
     @Override
-    public Page<ManufacturerResponse> getAllManufacturers(int page, int size, boolean sortDesc) {
+    public Page<ManufacturerResponse> getAllManufacturers(int page,
+                                                          int size,
+                                                          boolean sortDesc) {
         return manufacturerResponseMapper.toManufacturerResponsePage(getManufacturerServicePort.getAllCategories(page, size, sortDesc));
     }
 }

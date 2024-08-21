@@ -1,4 +1,4 @@
-package com.pragma.StockMicroservice.application.mapper;
+package com.pragma.StockMicroservice.application.mapper.article;
 
 import com.pragma.StockMicroservice.application.dto.article.ArticleRequest;
 import com.pragma.StockMicroservice.domain.model.Article;
@@ -7,11 +7,7 @@ import org.mapstruct.ReportingPolicy;
 import org.springframework.data.domain.Page;
 
 
-@Mapper(
-        componentModel = "spring",
-        unmappedTargetPolicy = ReportingPolicy.IGNORE,
-        unmappedSourcePolicy = ReportingPolicy.IGNORE
-)
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE, unmappedSourcePolicy = ReportingPolicy.IGNORE)
 public interface ArticleRequestMapper {
     Article toArticle(ArticleRequest articleRequest);
 

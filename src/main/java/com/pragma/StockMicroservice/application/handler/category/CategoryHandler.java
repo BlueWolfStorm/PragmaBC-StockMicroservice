@@ -1,9 +1,9 @@
-package com.pragma.StockMicroservice.application.handler;
+package com.pragma.StockMicroservice.application.handler.category;
 
 import com.pragma.StockMicroservice.application.dto.category.CategoryRequest;
 import com.pragma.StockMicroservice.application.dto.category.CategoryResponse;
-import com.pragma.StockMicroservice.application.mapper.CategoryRequestMapper;
-import com.pragma.StockMicroservice.application.mapper.CategoryResponseMapper;
+import com.pragma.StockMicroservice.application.mapper.category.CategoryRequestMapper;
+import com.pragma.StockMicroservice.application.mapper.category.CategoryResponseMapper;
 import com.pragma.StockMicroservice.domain.api.ICreateCategoryServicePort;
 import com.pragma.StockMicroservice.domain.api.IGetCategoryServicePort;
 import com.pragma.StockMicroservice.domain.model.Category;
@@ -28,7 +28,9 @@ public class CategoryHandler implements ICategoryHandler {
     }
 
     @Override
-    public Page<CategoryResponse> getAllCategories(int page, int size, boolean sortDesc) {
+    public Page<CategoryResponse> getAllCategories(int page,
+                                                   int size,
+                                                   boolean sortDesc) {
         return categoryResponseMapper.toCategoryResponsePage(getCategoryServicePort.getAllCategories(page, size, sortDesc));
     }
 }

@@ -16,12 +16,19 @@ public class GetArticleUseCase implements IGetArticleServicePort {
     }
 
     @Override
-    public Page<Article> getAllCategories(int page, int size, boolean sortDesc, String articleName, String articleManufacturer, String articleCategory) {
+    public Page<Article> getAllCategories(int page,
+                                          int size,
+                                          boolean sortDesc,
+                                          String articleName,
+                                          String articleManufacturer,
+                                          String articleCategory) {
         Pageable pageable;
-        if (sortDesc)
-            pageable = PageRequest.of(page, size, Sort.by("name").descending());
-        else
-            pageable = PageRequest.of(page, size, Sort.by("name").ascending());
+        if (sortDesc) pageable = PageRequest.of(page, size, Sort
+                .by("name")
+                .descending());
+        else pageable = PageRequest.of(page, size, Sort
+                .by("name")
+                .ascending());
 
         return articlePersistencePort.getArticles(pageable, articleName, articleManufacturer, articleCategory);
     }

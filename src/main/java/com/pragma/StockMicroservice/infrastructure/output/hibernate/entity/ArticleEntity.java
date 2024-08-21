@@ -29,8 +29,6 @@ public class ArticleEntity {
     private ManufacturerEntity manufacturer;
 
     @ManyToMany()
-    @JoinTable(name = "ARTICLE_CATEGORY",
-            joinColumns = @JoinColumn(name = "ARTICLE_ID"),
-            inverseJoinColumns = @JoinColumn(name = "CATEGORY_ID"))
+    @JoinTable(name = "ARTICLE_CATEGORY", joinColumns = @JoinColumn(name = "ARTICLE_ID"), inverseJoinColumns = @JoinColumn(name = "CATEGORY_ID"))
     private List<CategoryEntity> categories;
 }

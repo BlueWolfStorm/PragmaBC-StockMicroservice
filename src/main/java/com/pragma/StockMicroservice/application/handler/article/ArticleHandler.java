@@ -1,9 +1,9 @@
-package com.pragma.StockMicroservice.application.handler;
+package com.pragma.StockMicroservice.application.handler.article;
 
 import com.pragma.StockMicroservice.application.dto.article.ArticleRequest;
 import com.pragma.StockMicroservice.application.dto.article.ArticleResponse;
-import com.pragma.StockMicroservice.application.mapper.ArticleRequestMapper;
-import com.pragma.StockMicroservice.application.mapper.ArticleResponseMapper;
+import com.pragma.StockMicroservice.application.mapper.article.ArticleRequestMapper;
+import com.pragma.StockMicroservice.application.mapper.article.ArticleResponseMapper;
 import com.pragma.StockMicroservice.domain.api.ICreateArticleServicePort;
 import com.pragma.StockMicroservice.domain.api.IGetArticleServicePort;
 import com.pragma.StockMicroservice.domain.model.Article;
@@ -29,7 +29,12 @@ public class ArticleHandler implements IArticleHandler {
     }
 
     @Override
-    public Page<ArticleResponse> getAllCategories(int page, int size, boolean sortDesc, String articleName, String articleManufacturer, String articleCategory) {
+    public Page<ArticleResponse> getAllCategories(int page,
+                                                  int size,
+                                                  boolean sortDesc,
+                                                  String articleName,
+                                                  String articleManufacturer,
+                                                  String articleCategory) {
         Page<Article> articles = getArticleServicePort.getAllCategories(page, size, sortDesc, articleName, articleManufacturer, articleCategory);
         return articleResponseMapper.toArticleResponsePage(articles);
     }

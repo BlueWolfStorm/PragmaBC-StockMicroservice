@@ -17,7 +17,9 @@ public class CategoryJimmerAdapter implements ICategoryPersistencePort {
 
     @Override
     public void insert(Category category) {
-        if (categoryRepository.findByName(category.getName()).isPresent()) {
+        if (categoryRepository
+                .findByName(category.getName())
+                .isPresent()) {
             throw new CategoryAlreadyExistException();
         }
 

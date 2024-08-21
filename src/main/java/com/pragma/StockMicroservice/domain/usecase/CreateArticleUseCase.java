@@ -16,11 +16,17 @@ public class CreateArticleUseCase implements ICreateArticleServicePort {
 
     @Override
     public void createArticle(Article article) {
-        if (article.getCategories().isEmpty() || article.getCategories().size() > 3)
+        if (article.getCategories()
+                   .isEmpty() || article.getCategories()
+                                        .size() > 3)
             throw new MaximumLimitExceededException(1, 3);
 
         for (Category category : article.getCategories())
-            if (article.getCategories().stream().filter(c -> c.getName().equals(category.getName())).count() > 1)
+            if (article.getCategories()
+                       .stream()
+                       .filter(c -> c.getName()
+                                     .equals(category.getName()))
+                       .count() > 1)
                 throw new NoCategoriesRepeated();
 
         this.articlePersistencePort.insertArticle(article);
